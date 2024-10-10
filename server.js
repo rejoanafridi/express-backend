@@ -1,17 +1,9 @@
+require('dotenv').config()
+
 const http = require('http')
-
-const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        res.write('<h1>Hello world</h1>')
-        res.statusCode = 200
-        res.end('')
-    } else {
-        res.write('<h1>404 nou found</h1>')
-        res.statusCode = 404
-        res.end('')
-    }
-})
-
-server.listen(8000, () => {
-    console.log('Server is listing on port 8000')
+const app = require('./app/app')
+const server = http.createServer(app)
+const PORT = process.env.PORT || 8000
+server.listen(PORT, () => {
+    console.log(`Server is listing on port ${PORT}`)
 })
